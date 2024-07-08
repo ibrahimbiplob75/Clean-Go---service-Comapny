@@ -4,6 +4,7 @@ import About from "../Pages/About";
 import Home from "../Pages/Home";
 import Login from "../Pages/Login";
 import Register from "../Pages/Register";
+import PrivateRoute from "../Private/PrivateRoute";
 
 const route = createBrowserRouter([
   {
@@ -16,7 +17,11 @@ const route = createBrowserRouter([
       },
       {
         path: "/about",
-        element: <About></About>,
+        element: (
+          <PrivateRoute>
+            <About></About>
+          </PrivateRoute>
+        ),
       },
     ],
   },

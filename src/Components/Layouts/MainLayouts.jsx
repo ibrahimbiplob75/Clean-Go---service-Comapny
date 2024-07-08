@@ -13,9 +13,12 @@ const MainLayouts = ({children}) => {
           <div className="drawer-content flex flex-col">
             {/* Navbar */}
             <Navbar></Navbar>
+            
             {/* Page content here */}
             {children}
           </div>
+          
+  
           <div className="drawer-side">
             <label
               htmlFor="my-drawer-3"
@@ -28,6 +31,7 @@ const MainLayouts = ({children}) => {
             </ul>
           </div>
         </div>
+        
       </div>
     );
 };

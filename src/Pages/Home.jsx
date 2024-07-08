@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import IntroImage from '../../src/assets/Images/intro.jpg';
 import Container from '../Components/UI/Container';
+import Services from './Services';
 
 const Home = () => {
   return (
@@ -8,7 +9,7 @@ const Home = () => {
       <div className="flex py-32 gap-16">
         <div className="flex-1 flex flex-col justify-between py-14 ">
           <h1 className="text-7xl font-bold text-start">
-            <span>Quality Cleaning</span> <br />{' '}
+            <span>Quality Cleaning</span> <br />{" "}
             <span className="text-primary">for Your Home</span>
           </h1>
           <p className="my-5 max-w-[65ch]">
@@ -54,6 +55,10 @@ const Home = () => {
             className="w-full h-full object-cover "
           />
         </div>
+      </div>
+      <div>
+        <h1 className="text-5xl font-bold text-center text-pink-700 mt-10">Our services</h1>
+        <Services></Services>
       </div>
     </Container>
   );
