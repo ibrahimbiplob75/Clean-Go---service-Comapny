@@ -20,7 +20,7 @@ const AuthProvider = ({children}) => {
 
     const logOut=()=>{
         setloader(true);
-         return signOut(auth);
+        return signOut(auth);
     }
     
     useEffect(()=>{

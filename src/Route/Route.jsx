@@ -13,7 +13,11 @@ const route = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Home></Home>,
+        element: (
+          <PrivateRoute>
+            <Home></Home>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/about",
