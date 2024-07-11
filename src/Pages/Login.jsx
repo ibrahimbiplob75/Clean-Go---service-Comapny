@@ -30,7 +30,7 @@ const Login = () => {
         navigate("/");
       }else{
         console.log("call logout")
-        logOut();
+         logOut();
       }
 
     } catch (error) {
