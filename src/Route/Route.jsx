@@ -6,6 +6,8 @@ import Login from "../Pages/Login";
 import Register from "../Pages/Register";
 import PrivateRoute from "../Private/PrivateRoute";
 import Services from "../Pages/Services";
+import Booking from "../Pages/Booking";
+import TrackOrder from "../Pages/TrackOrder";
 
 const route = createBrowserRouter([
   {
@@ -29,6 +31,22 @@ const route = createBrowserRouter([
         element: (
           <PrivateRoute>
             <Services></Services>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/booking/:id",
+        element: (
+          <PrivateRoute>
+            <Booking></Booking>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/booking/order",
+        element: (
+          <PrivateRoute>
+            <TrackOrder></TrackOrder>
           </PrivateRoute>
         ),
       },

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import IntroImage from '../../src/assets/Images/intro.jpg';
+import IntroImage from '../../src/assets/Images/compLab.jpg';
 import Container from '../Components/UI/Container';
 import Services from './Services';
 
@@ -9,16 +9,15 @@ const Home = () => {
       <div className="flex py-32 gap-16">
         <div className="flex-1 flex flex-col justify-between py-14 ">
           <h1 className="text-7xl font-bold text-start">
-            <span>Quality Cleaning</span> <br />{" "}
-            <span className="text-primary">for Your Home</span>
+            <span>Digital Lab Assistant</span> <br />
+            <span className="text-primary">for NITER CSE</span>
           </h1>
           <p className="my-5 max-w-[65ch]">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit
-            tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.
+            Search and findout your neccessary project equipment from our lab as well as you can also buy from us your needed lab equipment.
           </p>
           <div className="space-x-5">
             <Link to="/services" className="btn btn-lg btn-primary">
-              Book a cleaning
+              Book a Equipment
             </Link>
             <Link to="/about" className="btn btn-lg">
               Read More

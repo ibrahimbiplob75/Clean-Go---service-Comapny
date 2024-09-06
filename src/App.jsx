@@ -1,5 +1,6 @@
 import { Outlet } from "react-router-dom";
 import MainLayouts from "./Components/Layouts/MainLayouts";
+import Footer from "./Components/Layouts/Footer";
 
 
 
@@ -13,6 +14,9 @@ function App() {
      </div>
      <div>
       <Outlet></Outlet>
+     </div>
+     <div>
+      <Footer></Footer>
      </div>
     </>
   );

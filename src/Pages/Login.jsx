@@ -9,7 +9,7 @@ import UseAxios from "../Hook/UseAxios";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { userLogin, googleLogin, logOut } = useAuth();
+  const { userLogin, signInWithGoogle, logOut } = useAuth();
   const navigate = useNavigate();
   const Axios=UseAxios()
 
@@ -42,7 +42,7 @@ const Login = () => {
     const toastId = toast.loading("Logging in ...");
 
     try {
-      await googleLogin(email, password);
+      await signInWithGoogle(email, password);
       toast.success("Logged in", { id: toastId });
       navigate("/");
     } catch (error) {
