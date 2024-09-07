@@ -3,16 +3,23 @@ import UseAxios from "../Hook/UseAxios";
 import ServiceCard from "../Components/ServiceCard";
 import Container from "../Components/UI/Container";
 import Loader from "../Components/UI/Loader";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Services = () => {
   const Axios = UseAxios();
   const [price,setPrice]=useState("")
   const [page, setPage] = useState(1);
   const [category,setCategory]=useState("")
+  const [Category, SetCategory] = useState([]);
 
-  const Category = ["Specialty", "Home", "Business"];
+  // const Category = ["Specialty", "Home", "Business"];
+
+  
   const limit = 6;
+
+  useEffect(()=>{
+    Axios.get("/categories").then(res=>res.data).then(data=>SetCategory(data));
+  },[])
   
   
   
@@ -39,7 +46,7 @@ const Services = () => {
 
     
     const noOfpage = Math.ceil(services.data?.total / limit);
-     console.log(noOfpage);
+    console.log(noOfpage);
 
     const handlePrev = () => {
       if (page > 1) {

@@ -8,7 +8,7 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirm, setConfirm] = useState("");
-  const { createUser, googleLogin } = useAuth();
+  const { createUser, signInWithGoogle } = useAuth();
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -34,10 +34,8 @@ const Register = () => {
   const handleGoogleLogin = async () => {
     const toastId = toast.loading("Logging in ...");
 
-    
-
     try {
-      await googleLogin(email, password);
+      await signInWithGoogle(email, password);
       toast.success("Logged in", { id: toastId });
       navigate("/");
     } catch (error) {

@@ -43,7 +43,7 @@ const Home = () => {
               </div>
             </div>
             <div>
-              <p className="font-semibold">Rated 5 out of 5 by our clients</p>
+              <p className="font-semibold">Rated 5 out of 5 by our students</p>
             </div>
           </div>
         </div>
@@ -56,7 +56,7 @@ const Home = () => {
         </div>
       </div>
       <div>
-        <h1 className="text-5xl font-bold text-center text-pink-700 mt-10">Our services</h1>
+        <h1 className="text-5xl font-bold text-center text-pink-700 mt-10">Our Project Equipment</h1>
         <Services></Services>
       </div>
     </Container>
