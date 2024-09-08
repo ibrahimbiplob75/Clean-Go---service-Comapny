@@ -6,10 +6,12 @@ import { useMutation, useQuery } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
 import UseAxios from '../Hook/UseAxios';
 import Loader from '../Components/UI/Loader';
+import { toast } from 'react-toastify';
+
 
 const Booking = () => {
   const { user } = useAuth();
-  const [customerNane, setcustomerNane] = useState("");
+  const [customerName, setcustomerNane] = useState("");
   const [email, setEmail] = useState('');
   const [date, setDate] = useState('');
   const [timeSlot, setTimeSlot] = useState('');
@@ -17,7 +19,7 @@ const Booking = () => {
   const Axios=UseAxios();
 
   const {id}=useParams()
-  console.log(id)
+  // console.log(id)
 
   const {data:service,isLoading}=useQuery({
     queryKey:["Booking"],
@@ -32,14 +34,17 @@ const Booking = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const data = { customerNane, email, date, timeSlot, address };
+    const data = { customerName, email, date, timeSlot, student_id };
     console.log(data);
   };
   const {mutate}=useMutation({
       mutationKey:["Booking"],
       mutationFn:async(bookingData)=>{
           const res = await Axios.post("/user/create-booking", bookingData);
-          return res
+          console.log(res)
+          if (res.data.acknowledged){
+            toast("Booking Done");
+          } return res;
       }
   })
   
@@ -62,16 +67,22 @@ const Booking = () => {
             <p className="max-w-[60ch] text-xl mt-5">
               {service?.data?.description}
             </p>
-            <div className="space-y-4 font-semibold mt-10">Features</div>
-            {service?.data?.details?.services_included?.map((item) => (
-              <p key={item}>{item}</p>
+            <div className="space-y-4 font-semibold text-2xl mt-10">
+              Availiable Equipment
+            </div>
+            {service?.data?.equipment_list?.map((item, index) => (
+              <p className="text-xl" key={item}>
+                {index + 1} -{item}
+              </p>
             ))}
           </div>
           <div>
             <div className="divider max-w-2xl"></div>
             <p className="text-4xl font-semibold">
-              {service.data?.details?.pricing}{" "}
-              <span className="text-xs">vat included</span>{" "}
+              {service.data?.duration}
+              <span className="text-xs">
+                Room no {service.data?.room_no}
+              </span>{" "}
             </p>
           </div>
         </div>
@@ -83,7 +94,8 @@ const Booking = () => {
               </label>
               <input
                 type="text"
-                placeholder="name"
+                defaultValue={user?.displayName}
+                placeholder="name or Group Name"
                 className="input input-bordered"
                 required
                 onBlur={(e) => setcustomerNane(e.target.value)}
@@ -95,6 +107,8 @@ const Booking = () => {
               </label>
               <input
                 type="email"
+                defaultValue={user?.email}
+                readOnly
                 placeholder="email"
                 className="input input-bordered"
                 required
@@ -121,14 +135,14 @@ const Booking = () => {
                 required
                 onChange={(e) => setTimeSlot(e.target.value)}
               >
-                <option>8am. - 12pm.</option>
-                <option>12pm. - 6pm.</option>
-                <option>6pm. - 10pm.</option>
+                <option>8am. - 11am.</option>
+                <option>11am. - 2pm.</option>
+                <option>2pm. - 5pm.</option>
               </select>
             </div>
             <div className="form-control">
               <label className="label">
-                <span className="label-text">Address</span>
+                <span className="label-text">Student ID</span>
               </label>
               <textarea
                 rows={12}
@@ -143,12 +157,12 @@ const Booking = () => {
                 type="button"
                 onClick={() =>
                   mutate({
-                    customerNane,
+                    customerName,
                     email,
                     date,
                     timeSlot,
                     address,
-                    status:"pendind"
+                    status: "pending",
                   })
                 }
                 className="btn btn-primary"

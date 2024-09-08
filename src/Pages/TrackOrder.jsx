@@ -3,6 +3,7 @@ import UseAxios from "../Hook/UseAxios";
 import useAuth from "../Hook/useAuth";
 import Container from "../Components/UI/Container";
 import Loader from "../Components/UI/Loader";
+import { toast } from "react-toastify";
 
 const TrackOrder = () => {
   const Axios=UseAxios();
@@ -16,11 +17,13 @@ const TrackOrder = () => {
     return response;
   };
 
-  const {data:booking,isLoading}=useQuery({
+  const {data:booking,isLoading,refetch}=useQuery({
     queryKey:["myBooking"],
     queryFn:getBooking,
     
+    
   })
+
 
    const { mutate } = useMutation({
      mutationKey: ["booking"],
@@ -29,8 +32,10 @@ const TrackOrder = () => {
        return res;
      },
      onSuccess:()=>{
-      toast.success("delete Done");
+      toast("delete Done");
+      refetch();
       QueryClient.invalidateQuries({ queryKey: ["myBooking"] });
+      
 
      }
    });
@@ -38,6 +43,7 @@ const TrackOrder = () => {
   if (isLoading) {
     return <Loader></Loader>;
   }
+  
   return (
     <div>
       <Container>
@@ -48,9 +54,9 @@ const TrackOrder = () => {
             <thead>
               <tr>
                 <th>No</th>
-                <th>order ID</th>
-                <th>date of order</th>
-                <th>Cancel Order</th>
+                <th>Booking ID</th>
+                <th>date of Booking</th>
+                <th>Cancel Booking</th>
               </tr>
             </thead>
             <tbody>

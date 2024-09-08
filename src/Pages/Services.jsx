@@ -12,14 +12,14 @@ const Services = () => {
   const [category,setCategory]=useState("")
   const [Category, SetCategory] = useState([]);
 
-  // const Category = ["Specialty", "Home", "Business"];
+
 
   
   const limit = 6;
 
   useEffect(()=>{
     Axios.get("/categories").then(res=>res.data).then(data=>SetCategory(data));
-  },[])
+  },[Category])
   
   
   
@@ -74,7 +74,7 @@ const Services = () => {
                 <option disabled selected>
                   Chose category
                 </option>
-                {Category.map((item) => (
+                {Category?.map((item) => (
                   <option key={item} value={item}>
                     {item}
                   </option>
