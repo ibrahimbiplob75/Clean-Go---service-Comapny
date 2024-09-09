@@ -1,13 +1,14 @@
 import React from 'react';
 import List from './List';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import useAuth from '../../Hook/useAuth';
 
 const Navbar = () => {
+  const navigate=useNavigate();
   const {user,logOut}=useAuth()
   const logout=()=>{
     logOut().then(res=>{
-      console.log(res)
+      navigate("/login")
     });
   }
     return (
@@ -69,9 +70,6 @@ const Navbar = () => {
                   Profile
                   <span className="badge">New</span>
                 </a>
-              </li>
-              <li>
-                <a>Settings</a>
               </li>
               <li>
                 <a onClick={()=>logout()}>Logout</a>

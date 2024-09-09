@@ -47,7 +47,6 @@ const TrackOrder = () => {
   return (
     <div>
       <Container>
-
         <div className="overflow-x-auto  min-h-screen">
           <table className="table">
             {/* head */}
@@ -55,6 +54,8 @@ const TrackOrder = () => {
               <tr>
                 <th>No</th>
                 <th>Booking ID</th>
+                <th>Booked By</th>
+                <th>Student ID</th>
                 <th>date of Booking</th>
                 <th>Cancel Booking</th>
               </tr>
@@ -64,9 +65,16 @@ const TrackOrder = () => {
                 <tr className="bg-base-200">
                   <th>{index + 1}</th>
                   <td>{booked._id}</td>
+                  <td>{booked.customerName}</td>
+                  <td>{booked.address}</td>
                   <td>{booked.date}</td>
                   <td>
-                    <button onClick={()=>mutate(booked._id)} className="btn btn-secondary">Cancel</button>
+                    <button
+                      onClick={() => mutate(booked._id)}
+                      className="btn btn-secondary"
+                    >
+                      Cancel
+                    </button>
                   </td>
                 </tr>
               ))}

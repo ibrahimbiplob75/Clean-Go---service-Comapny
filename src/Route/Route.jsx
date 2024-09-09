@@ -4,10 +4,10 @@ import About from "../Pages/About";
 import Home from "../Pages/Home";
 import Login from "../Pages/Login";
 import Register from "../Pages/Register";
-import PrivateRoute from "../Private/PrivateRoute";
 import Services from "../Pages/Services";
 import Booking from "../Pages/Booking";
 import TrackOrder from "../Pages/TrackOrder";
+import PrivateRoute from "../Private/PrivateRoute";
 
 const route = createBrowserRouter([
   {
