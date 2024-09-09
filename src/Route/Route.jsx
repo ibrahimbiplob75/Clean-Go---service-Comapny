@@ -8,6 +8,9 @@ import Services from "../Pages/Services";
 import Booking from "../Pages/Booking";
 import TrackOrder from "../Pages/TrackOrder";
 import PrivateRoute from "../Private/PrivateRoute";
+import Dashboard from "../Components/Layouts/Dashboard";
+import AddEquipment from "../Pages/AddEquipment";
+import DashboardLayout from "../Components/Layouts/DashboardLayout";
 
 const route = createBrowserRouter([
   {
@@ -59,6 +62,21 @@ const route = createBrowserRouter([
   {
     path: "/register",
     element: <Register></Register>,
+  },
+
+  {
+    path: "/dashboard",
+    element: <Dashboard></Dashboard>,
+    children: [
+      {
+        path: "profile",
+        element: <Dashboard></Dashboard>,
+      },
+      {
+        path: "/dashboard/add-equip",
+        element: <AddEquipment></AddEquipment>,
+      },
+    ],
   },
 ]);
     

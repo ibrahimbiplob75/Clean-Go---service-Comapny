@@ -14,16 +14,7 @@ const List = () => {
             Home
           </NavLink>
         </li>
-        <li>
-          <NavLink
-            className={({ isActive }) =>
-              isActive ? "btn btn-primary" : "btn btn-ghost"
-            }
-            to={"/about"}
-          >
-            about
-          </NavLink>
-        </li>
+
         <li>
           <NavLink
             className={({ isActive }) =>
@@ -41,7 +32,17 @@ const List = () => {
             }
             to={"/booking/order"}
           >
-            MyCart
+            My Booking
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
+            className={({ isActive }) =>
+              isActive ? "btn btn-primary" : "btn btn-ghost"
+            }
+            to={"/about"}
+          >
+            about
           </NavLink>
         </li>
       </>

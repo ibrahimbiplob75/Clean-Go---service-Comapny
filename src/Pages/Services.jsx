@@ -19,7 +19,7 @@ const Services = () => {
 
   useEffect(()=>{
     Axios.get("/categories").then(res=>res.data).then(data=>SetCategory(data));
-  },[Category])
+  },[])
   
   
   
@@ -42,11 +42,12 @@ const Services = () => {
     if(isLoading){
         return <Loader></Loader>
     }
-    console.log(services);
+    // console.log(services);
 
+    const  noOfpage = Math.ceil(services.data?.total / limit);
     
-    const noOfpage = Math.ceil(services.data?.total / limit);
-    console.log(noOfpage);
+    
+    // console.log(noOfpage);
 
     const handlePrev = () => {
       if (page > 1) {

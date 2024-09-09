@@ -1,6 +1,6 @@
 
 import Container from '../Components/UI/Container';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import useAuth from '../Hook/useAuth';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
@@ -11,15 +11,20 @@ import { toast } from 'react-toastify';
 
 const Booking = () => {
   const { user } = useAuth();
-  const [customerName, setcustomerNane] = useState("");
+  const [studentName, setStudentName] = useState("");
   const [email, setEmail] = useState('');
   const [date, setDate] = useState('');
   const [timeSlot, setTimeSlot] = useState('');
-  const [address, setAddress] = useState('');
+  const [student_id, setStudent_id] = useState("");
   const Axios=UseAxios();
 
   const {id}=useParams()
-  // console.log(id)
+
+  useEffect(() => {
+    if (user?.email) {
+      setEmail(user.email);
+    }
+  }, [user?.email]);
 
   const {data:service,isLoading}=useQuery({
     queryKey:["Booking"],
@@ -34,7 +39,7 @@ const Booking = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const data = { customerName, email, date, timeSlot, student_id };
+    const data = { studentName, email, date, timeSlot, student_id };
     console.log(data);
   };
   const {mutate}=useMutation({
@@ -94,12 +99,21 @@ const Booking = () => {
               </label>
               <input
                 type="text"
-                defaultValue={user?.displayName}
                 placeholder="name or Group Name"
                 className="input input-bordered"
                 required
-                onBlur={(e) => setcustomerNane(e.target.value)}
+                onBlur={(e) => setStudentName(e.target.value)}
               />
+            </div>
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Student ID</span>
+              </label>
+              <input
+                required
+                className="input input-bordered"
+                onBlur={(e) => setStudent_id(e.target.value)}
+              ></input>
             </div>
             <div className="form-control">
               <label className="label">
@@ -112,7 +126,7 @@ const Booking = () => {
                 placeholder="email"
                 className="input input-bordered"
                 required
-                onBlur={(e) => setEmail(e.target.value)}
+                
               />
             </div>
             <div className="form-control">
@@ -140,28 +154,17 @@ const Booking = () => {
                 <option>2pm. - 5pm.</option>
               </select>
             </div>
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">Student ID</span>
-              </label>
-              <textarea
-                rows={12}
-                required
-                className="input input-bordered"
-                onBlur={(e) => setAddress(e.target.value)}
-              ></textarea>
-            </div>
 
             <div className="form-control mt-2">
               <button
                 type="button"
                 onClick={() =>
                   mutate({
-                    customerName,
+                    studentName,
                     email,
                     date,
                     timeSlot,
-                    address,
+                    student_id,
                     status: "pending",
                   })
                 }

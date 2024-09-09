@@ -65,8 +65,8 @@ const TrackOrder = () => {
                 <tr className="bg-base-200">
                   <th>{index + 1}</th>
                   <td>{booked._id}</td>
-                  <td>{booked.customerName}</td>
-                  <td>{booked.address}</td>
+                  <td>{booked.studentName}</td>
+                  <td>{booked.student_id}</td>
                   <td>{booked.date}</td>
                   <td>
                     <button

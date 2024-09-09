@@ -8,7 +8,7 @@ const PrivateRoute = ({children}) => {
     const location = useLocation();
     
     if(loader){
-       return <Loader></Loader>   
+       return <Loader></Loader>
     }
     
     if (user) {
