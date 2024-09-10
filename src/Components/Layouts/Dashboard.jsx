@@ -34,7 +34,7 @@ const Dashboard = () => {
                 <Link to={"/dashboard/add-equip"}>Add new Equipment</Link>
               </li>
               <li>
-                <Link>Manage Booking</Link>
+                <Link to={"/dashboard/booked-equip"}>Manage Booking</Link>
               </li>
             </ul>
           </div>
