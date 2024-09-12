@@ -5,15 +5,25 @@ import UseAxios from "../Hook/UseAxios";
 import useAuth from "../Hook/useAuth";
 import Loader from "../Components/UI/Loader";
 import Container from "../Components/UI/Container";
+import UserRole from "../Hook/UserRole";
 
 const ManageUser = () => {
   const Axios = UseAxios();
   const { user } = useAuth();
+  const [role]=UserRole();
+
+  const handleSubmitClick = () => {
+    if (role === "student") {
+      toast.error("Only moderators can Change.");
+    }
+  };
 
   const getUsers = async () => {
     const response = await Axios.get(`/users`);
     return response;
   };
+
+
 
   const {
     data: users,
@@ -70,16 +80,28 @@ const ManageUser = () => {
                   <th>{index + 1}</th>
                   <td>{user?.name}</td>
                   <td>{user?.email}</td>
-                  <td>
-                    <button
-                      onClick={() => RoledUser(user?._id)}
-                      className="btn btn-primary"
-                    >
-                      {user?.role}
-                    </button>
+                  <td onMouseEnter={() => handleSubmitClick()}>
+                    {role == "student" ? (
+                      <button
+                        disabled={role === "student"}
+                        onClick={() => RoledUser(user?._id)}
+                        className="btn btn-primary"
+                      >
+                        {"Update role"}
+                      </button>
+                    ) : (
+                      <button
+                        disabled={role === "student"}
+                        onClick={() => RoledUser(user?._id)}
+                        className="btn btn-success"
+                      >
+                        {user?.role}
+                      </button>
+                    )}
                   </td>
-                  <td>
+                  <td onMouseEnter={() => handleSubmitClick()}>
                     <button
+                      disabled={role === "student"}
                       onClick={() => mutate(user?._id)}
                       className="btn btn-secondary"
                     >

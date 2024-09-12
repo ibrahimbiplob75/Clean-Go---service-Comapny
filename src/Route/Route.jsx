@@ -12,6 +12,8 @@ import Dashboard from "../Components/Layouts/Dashboard";
 import AddEquipment from "../Pages/AddEquipment";
 import MangaeBooking from "../Pages/MangaeBooking";
 import ManageUser from "../Pages/ManageUser";
+import ManageEquipment from "../Pages/ManageEquipment";
+import UpdateEquipment from "../Pages/UpdateEquipment";
 
 
 
@@ -22,7 +24,11 @@ const route = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Home></Home>,
+        element: (
+          <PrivateRoute>
+            <Home></Home>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/about",
@@ -82,6 +88,15 @@ const route = createBrowserRouter([
       {
         path: "/dashboard/booked-equip",
         element: <MangaeBooking></MangaeBooking>,
+      },
+      {
+        path: "/dashboard/manage-equip",
+        element: <ManageEquipment></ManageEquipment>,
+      },
+      {
+        path: "/dashboard/update-equip/:id",
+        element: <UpdateEquipment></UpdateEquipment>,
+        
       },
     ],
   },

@@ -6,9 +6,6 @@ import UseAxios from '../../Hook/UseAxios';
 import UserRole from '../../Hook/UserRole';
 const Dashboard = () => {
     const role=UserRole();
-    console.log(role)
-
-    
     return (
       <div>
         <div className="drawer lg:drawer-open">
@@ -21,7 +18,7 @@ const Dashboard = () => {
               <AiOutlineBars className="h-5 w-5" />
             </label>
             <h1 className="text-center text-4xl text-pink-500 mt-10">
-              Welcome to role as {role} in to Dashboard
+              Welcome to Dashboard You are roling as {role}
             </h1>
             <Outlet></Outlet>
           </div>
@@ -47,7 +44,7 @@ const Dashboard = () => {
                 <Link to={"/dashboard/add-equip"}>Add new Equipment</Link>
               </li>
               <li className="text-xl shadow-2xl m-4 rounded-xl font-semibold">
-                <Link to={"/dashboard/booked-equip"}>Manage Equipment</Link>
+                <Link to={"/dashboard/manage-equip"}>Manage Equipment</Link>
               </li>
             </ul>
           </div>
