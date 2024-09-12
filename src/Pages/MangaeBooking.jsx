@@ -1,10 +1,10 @@
 import { QueryClient, useMutation, useQuery } from "@tanstack/react-query";
 
 import { toast } from "react-toastify";
-import UseAxios from "../../Hook/UseAxios";
-import useAuth from "../../Hook/useAuth";
-import Loader from "../UI/Loader";
-import Container from "../UI/Container";
+import UseAxios from "../Hook/UseAxios";
+import useAuth from "../Hook/useAuth";
+import Loader from "../Components/UI/Loader";
+import Container from "../Components/UI/Container";
 
 const MangaeBooking = () => {
   const Axios = UseAxios();

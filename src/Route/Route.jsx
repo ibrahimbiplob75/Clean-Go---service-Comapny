@@ -10,7 +10,9 @@ import TrackOrder from "../Pages/TrackOrder";
 import PrivateRoute from "../Private/PrivateRoute";
 import Dashboard from "../Components/Layouts/Dashboard";
 import AddEquipment from "../Pages/AddEquipment";
-import MangaeBooking from "../Components/Layouts/MangaeBooking";
+import MangaeBooking from "../Pages/MangaeBooking";
+import ManageUser from "../Pages/ManageUser";
+
 
 
 const route = createBrowserRouter([
@@ -70,8 +72,8 @@ const route = createBrowserRouter([
     element: <Dashboard></Dashboard>,
     children: [
       {
-        path: "profile",
-        element: <Dashboard></Dashboard>,
+        path: "users",
+        element: <ManageUser></ManageUser>,
       },
       {
         path: "/dashboard/add-equip",

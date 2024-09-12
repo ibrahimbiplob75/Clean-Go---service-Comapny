@@ -1,7 +1,14 @@
 import React from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import { AiOutlineBars } from "react-icons/ai";
+import useAuth from '../../Hook/useAuth';
+import UseAxios from '../../Hook/UseAxios';
+import UserRole from '../../Hook/UserRole';
 const Dashboard = () => {
+    const role=UserRole();
+    console.log(role)
+
+    
     return (
       <div>
         <div className="drawer lg:drawer-open">
@@ -14,7 +21,7 @@ const Dashboard = () => {
               <AiOutlineBars className="h-5 w-5" />
             </label>
             <h1 className="text-center text-4xl text-pink-500 mt-10">
-              Welcome to your Dashboard
+              Welcome to role as {role} in to Dashboard
             </h1>
             <Outlet></Outlet>
           </div>
@@ -27,14 +34,20 @@ const Dashboard = () => {
             ></label>
             <ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4">
               {/* Sidebar content here */}
-              <li>
+              <li className="text-xl shadow-2xl m-4 rounded-xl font-semibold">
                 <Link to={"/"}>Home</Link>
               </li>
-              <li>
+              <li className="text-xl shadow-2xl m-4 rounded-xl font-semibold">
+                <Link to={"/dashboard/users"}>All users</Link>
+              </li>
+              <li className="text-xl shadow-2xl m-4 rounded-xl font-semibold">
+                <Link to={"/dashboard/booked-equip"}>Manage Booking</Link>
+              </li>
+              <li className="text-xl shadow-2xl m-4 rounded-xl font-semibold">
                 <Link to={"/dashboard/add-equip"}>Add new Equipment</Link>
               </li>
-              <li>
-                <Link to={"/dashboard/booked-equip"}>Manage Booking</Link>
+              <li className="text-xl shadow-2xl m-4 rounded-xl font-semibold">
+                <Link to={"/dashboard/booked-equip"}>Manage Equipment</Link>
               </li>
             </ul>
           </div>

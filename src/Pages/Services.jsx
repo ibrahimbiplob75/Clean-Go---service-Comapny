@@ -61,7 +61,7 @@ const Services = () => {
       }
       // console.log("next",page)
     };
-    console.log("page value", page);
+    // console.log("page value", page);
     return (
       <>
         <Container>

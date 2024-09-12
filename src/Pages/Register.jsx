@@ -3,28 +3,43 @@ import { FcGoogle } from "react-icons/fc";
 import { NavLink, useNavigate } from "react-router-dom";
 import useAuth from "../Hook/useAuth";
 import toast from "react-hot-toast";
+import UseAxios from "../Hook/UseAxios";
+
 
 const Register = () => {
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirm, setConfirm] = useState("");
   const { createUser, signInWithGoogle } = useAuth();
   const navigate = useNavigate();
+  const Axios=UseAxios();
 
   const handleSubmit = async (e) => {
+    
     e.preventDefault();
-    console.log(email, password);
+    
     if (confirm !== password) {
       toast.error("Mismatch in confirm password");
       return;
     }
 
     const toastId = toast.loading("Creating user ...");
+    const userData={
+      name,
+      email,
+      role:"student"
+    }
 
     try {
       await createUser(email, password);
-      toast.success("User Created", { id: toastId });
-      navigate("/");
+      const res = await Axios.post("/user/create-user",  userData );
+      console.log(res)
+      if(res.data.insertedId){
+        toast.success("User Created", { id: toastId });
+        navigate("/login");
+      }
+      
     } catch (error) {
       console.log(error);
       toast.error(error.message, { id: toastId });
@@ -47,6 +62,18 @@ const Register = () => {
     <div className="min-h-screen bg-base-200 flex justify-center items-center">
       <div className="card flex-shrink-0 w-full max-w-md shadow-2xl bg-base-100">
         <form className="card-body" onSubmit={handleSubmit}>
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text">Name</span>
+            </label>
+            <input
+              type="name"
+              placeholder="name"
+              className="input input-bordered"
+              onBlur={(e) => setName(e.target.value)}
+              required
+            />
+          </div>
           <div className="form-control">
             <label className="label">
               <span className="label-text">Email</span>
