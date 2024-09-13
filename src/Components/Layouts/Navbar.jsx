@@ -14,7 +14,7 @@ const Navbar = () => {
     return (
       <div className="navbar bg-base-300 w-full">
         <div className=" w-full max-w-[1200px] m-auto">
-          <div className="flex-none lg:hidden">
+          <div className="flex-none  lg:hidden">
             <label
               htmlFor="my-drawer-3"
               aria-label="open sidebar"

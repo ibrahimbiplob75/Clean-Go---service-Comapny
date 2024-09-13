@@ -65,39 +65,43 @@ const Services = () => {
     return (
       <>
         <Container>
-          <div className="my-12 flex justify-end items-center border-2 border-primary rounded-2xl p-5 gap-5">
-            <h1 className="flex-1 font-semibold">Over 20 services to chose</h1>
-            <div className="form-control">
-              <select
-                onChange={(e) => setCategory(e.target.value)}
-                className="select select-bordered w-full max-w-xs"
-              >
-                <option disabled selected>
-                  Chose category
-                </option>
-                {Category?.map((item) => (
-                  <option key={item} value={item}>
-                    {item}
+          <div className="my-12 flex flex-col md:flex-row justify-center items-center border-2 border-primary rounded-2xl p-5 gap-5">
+            <h1 className="flex-1 font-semibold">
+              Over {services.data?.total} services to chose
+            </h1>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+              <div className="form-control">
+                <select
+                  onChange={(e) => setCategory(e.target.value)}
+                  className="select select-bordered w-full max-w-xs"
+                >
+                  <option disabled selected>
+                    Chose category
                   </option>
-                ))}
-              </select>
-            </div>
-            <div className="form-control">
-              <select
-                onChange={(e) => setPrice(e.target.value)}
-                className="select select-bordered w-full max-w-xs"
-              >
-                <option disabled selected>
-                  Price Range
-                </option>
-                <option value={"desc"}>High to low</option>
-                <option value={"asc"}>Low to high</option>
-              </select>
+                  {Category?.map((item) => (
+                    <option key={item} value={item}>
+                      {item}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div className="form-control">
+                <select
+                  onChange={(e) => setPrice(e.target.value)}
+                  className="select select-bordered w-full max-w-xs"
+                >
+                  <option disabled selected>
+                    Price Range
+                  </option>
+                  <option value={"desc"}>High to low</option>
+                  <option value={"asc"}>Low to high</option>
+                </select>
+              </div>
             </div>
           </div>
         </Container>
         <Container className="mb-64 mt-10">
-          <div className="grid grid-cols-3 gap-10">
+          <div className="grid grid-cols-1  md:grid-cols-2 lg:grid-cols-3 gap-10">
             {services?.data?.result.map((service) => (
               <ServiceCard key={service?._id} service={service}></ServiceCard>
             ))}
@@ -106,9 +110,9 @@ const Services = () => {
             <div className="join">
               <button
                 onClick={handlePrev}
-                className="join-item btn btn-outline"
+                className="join-item btn  btn-outline"
               >
-                Previous page
+                Prev
               </button>
               {isLoading ? (
                 <Loader></Loader>

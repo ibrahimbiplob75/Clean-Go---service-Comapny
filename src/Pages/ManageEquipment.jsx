@@ -67,7 +67,7 @@ const ManageEquipment = () => {
             </thead>
             <tbody>
               {services?.data?.result.map((equipment, index) => (
-                <tr className="bg-base-200">
+                <tr key={equipment._id} className="bg-base-200">
                   <th>{index + 1}</th>
                   <td>{equipment?.name}</td>
                   <td>{equipment?.category}</td>

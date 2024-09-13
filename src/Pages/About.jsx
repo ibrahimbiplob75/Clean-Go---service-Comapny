@@ -4,9 +4,12 @@ import ibrahim from "../../src/assets/Images/Myproject.png"
 const About = () => {
     return (
       <div>
-        <div className="hero bg-base-200 min-h-screen">
+        <div className="hero  min-h-screen">
           <div className="hero-content flex-col lg:flex-row-reverse">
-            <img src={ibrahim} className="max-w-xl rounded-lg shadow-2xl" />
+            <img
+              src={ibrahim}
+              className="max-w-sm  md:max-w-xl rounded-lg shadow-2xl"
+            />
             <div>
               <h1 className="text-5xl font-bold">Md Ibrahim Biplob</h1>
               <p className="py-6">
@@ -24,7 +27,7 @@ const About = () => {
                 Hire me!
               </Link>
 
-              <Link 
+              <Link
                 to={"https://www.linkedin.com/in/ibrahimbiplob75/"}
                 className="btn btn-success ml-5"
               >

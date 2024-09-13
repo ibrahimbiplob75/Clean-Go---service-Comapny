@@ -4,7 +4,7 @@ import Container from '../UI/Container';
 const Footer = () => {
   return (
     <Container>
-      <div className="flex justify-between gap-10">
+      <div className="grid grid-cols-1  md:grid-cols-2 lg:grid-cols-3 justify-between gap-10">
         <div>
           <h1 className="text-xl font-semibold mb-2">Digital Lab Assistant</h1>
           <p className="max-w-[35ch] font-medium">
