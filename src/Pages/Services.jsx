@@ -11,9 +11,6 @@ const Services = () => {
   const [page, setPage] = useState(1);
   const [category,setCategory]=useState("")
   const [Category, SetCategory] = useState([]);
-
-
-
   
   const limit = 6;
 

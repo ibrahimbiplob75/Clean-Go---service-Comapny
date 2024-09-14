@@ -8,10 +8,10 @@ const About = () => {
           <div className="hero-content flex-col lg:flex-row-reverse">
             <img
               src={ibrahim}
-              className="max-w-sm  md:max-w-xl rounded-lg shadow-2xl"
+              className="w-4/5 m-auto  md:max-w-xl rounded-lg shadow-2xl"
             />
             <div>
-              <h1 className="text-5xl font-bold">Md Ibrahim Biplob</h1>
+              <h1 className="text-3xl md:text-5xl font-bold">Md Ibrahim Biplob</h1>
               <p className="py-6">
                 Hello! I'm MD Ibrahim Biplob, a dedicated student of Computer
                 Science and Engineering (CSE) with a passion for web

@@ -48,13 +48,32 @@ const Register = () => {
 
   const handleGoogleLogin = async () => {
     const toastId = toast.loading("Logging in ...");
+    
 
     try {
-      await signInWithGoogle(email, password);
-      toast.success("Logged in", { id: toastId });
-      navigate("/");
-    } catch (error) {
-      toast.error(error.message, { id: toastId });
+      const user = await signInWithGoogle();
+      const userData = {
+        name: user?.user?.displayName,
+        email: user?.user?.email,
+        role: "student",
+      };
+      const res = await Axios.put(
+        `/user/create-user/${user?.user?.email}`,
+        userData
+      );
+      const response = await Axios.post("/user/access-token", {
+        email: user?.user?.email,
+      });
+      console.log(res.data);
+      if (res.data) {
+        toast.success("Logged in", { id: toastId });
+        navigate("/");
+        window.location.reload();
+      } else {
+        console.log("call logout");
+        logOut();
+      }
+    } finally {
     }
   };
 

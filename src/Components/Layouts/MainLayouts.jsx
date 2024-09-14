@@ -19,13 +19,13 @@ const MainLayouts = ({children}) => {
           </div>
           
   
-          <div className="drawer-side">
+          <div className="drawer-side z-1000">
             <label
               htmlFor="my-drawer-3"
               aria-label="close sidebar"
               className="drawer-overlay"
             ></label>
-            <ul className="menu bg-base-200 min-h-full w-80 p-4">
+            <ul className="menu bg-base-100 min-h-full w-60 md:w-80 p-4">
               {/* Sidebar content here */}
               <List></List>
             </ul>

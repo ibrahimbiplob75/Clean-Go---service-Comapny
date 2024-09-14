@@ -3,7 +3,7 @@ import Container from '../Components/UI/Container';
 import { useEffect, useState } from 'react';
 import useAuth from '../Hook/useAuth';
 import { useMutation, useQuery } from '@tanstack/react-query';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import UseAxios from '../Hook/UseAxios';
 import Loader from '../Components/UI/Loader';
 import { toast } from 'react-toastify';
@@ -17,6 +17,7 @@ const Booking = () => {
   const [timeSlot, setTimeSlot] = useState('');
   const [student_id, setStudent_id] = useState("");
   const Axios=UseAxios();
+  const navigate=useNavigate();
 
   const {id}=useParams()
 
@@ -49,7 +50,9 @@ const Booking = () => {
           console.log(res)
           if (res.data.acknowledged){
             toast("Booking Done");
+            navigate("/booking/order");
           } return res;
+          
       }
   })
   
@@ -65,7 +68,7 @@ const Booking = () => {
 
   return (
     <Container className="my-40">
-      <div className="flex">
+      <div className="grid grid-cols-1 md:grid-cols-2">
         <div className="flex-1 flex flex-col justify-between">
           <div>
             <h1 className="text-3xl font-bold">{service?.data?.name}</h1>

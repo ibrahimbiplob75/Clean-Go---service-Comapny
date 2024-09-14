@@ -6,6 +6,7 @@ import useAuth from "../Hook/useAuth";
 import Loader from "../Components/UI/Loader";
 import Container from "../Components/UI/Container";
 import UserRole from "../Hook/UserRole";
+import { deleteUser } from "firebase/auth";
 
 const ManageUser = () => {
   const Axios = UseAxios();
@@ -23,6 +24,8 @@ const ManageUser = () => {
     return response;
   };
 
+  
+
 
 
   const {
@@ -38,6 +41,9 @@ const ManageUser = () => {
     mutationKey: ["users"],
     mutationFn: async (id) => {
       const res = await Axios.delete(`/user/cancel-users/${id}`);
+      deleteUser(user)
+        .then(() => {console.log("firebased data deleted")})
+        .catch((error) => {console.log(error)});
       return res;
     },
     onSuccess: () => {
@@ -76,7 +82,7 @@ const ManageUser = () => {
             </thead>
             <tbody>
               {users?.data?.map((user, index) => (
-                <tr className="bg-base-200">
+                <tr key={user._id} className="bg-base-200">
                   <th>{index + 1}</th>
                   <td>{user?.name}</td>
                   <td>{user?.email}</td>

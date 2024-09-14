@@ -13,7 +13,7 @@ const Dashboard = () => {
           <div className="drawer-content flex flex-col ">
             <label
               htmlFor="my-drawer-2"
-              className=" btn  drawer-button w-full lg:hidden"
+              className="btn drawer-button w-full lg:hidden"
             >
               <AiOutlineBars className="h-5 w-5" />
             </label>
