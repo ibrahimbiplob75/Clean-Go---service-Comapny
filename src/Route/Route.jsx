@@ -14,6 +14,7 @@ import MangaeBooking from "../Pages/MangaeBooking";
 import ManageUser from "../Pages/ManageUser";
 import ManageEquipment from "../Pages/ManageEquipment";
 import UpdateEquipment from "../Pages/UpdateEquipment";
+import CartPage from "../Pages/CartPage";
 
 
 
@@ -77,6 +78,10 @@ const route = createBrowserRouter([
     path: "/dashboard",
     element: <Dashboard></Dashboard>,
     children: [
+      {
+        path:"/dashboard",
+        element:<PrivateRoute><CartPage></CartPage></PrivateRoute>
+      },
       {
         path: "users",
         element: <ManageUser></ManageUser>,

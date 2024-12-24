@@ -10,9 +10,7 @@ const TrackOrder = () => {
   const {user}=useAuth()
   const email=user?.email
   const getBooking = async () => {
-    const response = await Axios.get(
-      `/user/bookings?email=${email}`
-    );
+    const response = await Axios.get(`/user/bookings?email=${email}`);
 
     return response;
   };

@@ -4,6 +4,7 @@ import ServiceCard from "../Components/ServiceCard";
 import Container from "../Components/UI/Container";
 import Loader from "../Components/UI/Loader";
 import { useEffect, useState } from "react";
+import CartPage from "./CartPage";
 
 const Services = () => {
   const Axios = UseAxios();
@@ -11,6 +12,7 @@ const Services = () => {
   const [page, setPage] = useState(1);
   const [category,setCategory]=useState("")
   const [Category, SetCategory] = useState([]);
+  
   
   const limit = 6;
 
@@ -22,7 +24,7 @@ const Services = () => {
   
   const getServices = async () => {
     const response = await Axios.get(
-      `/user/services/?sortField=details.pricing&sortOrder=${price}&category=${category}&page=${page}&limit=${limit}`
+      `/user/services/?sortField=price&sortOrder=${price}&category=${category}&page=${page}&limit=${limit}`
     );
     
     return response;
@@ -56,9 +58,8 @@ const Services = () => {
       if (page < noOfpage) {
         setPage(page + 1)
       }
-      // console.log("next",page)
+      
     };
-    // console.log("page value", page);
     return (
       <>
         <Container>

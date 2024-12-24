@@ -1,7 +1,33 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
+import UserInfo from "../Hook/userInfo";
+import UseAxios from "../Hook/UseAxios";
 
 const ServiceCard = ({ service }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [email]=UserInfo();
+  const Axios=UseAxios()
+
+  const handleAddToCart = async () => {
+    const cartData = {
+      userId:email, 
+      productId: service?._id,
+      productName: service?.name,
+      productPrice: service?.price,
+      productImage: service?.image,
+    };
+
+    try {
+      await Axios.post('/user/create-cart',cartData);
+      alert('Product added to cart successfully');
+      setIsModalOpen(false); 
+    } catch (error) {
+      console.error('Error adding product to cart:', error);
+      alert('Failed to add product to cart');
+    }
+  };
+
   return (
     <div className="border-2 border-primary h-[650px] flex flex-col rounded-[15px] overflow-hidden transition-all hover:scale-105 hover:shadow-2xl group">
       {/* Image Section */}
@@ -46,14 +72,50 @@ const ServiceCard = ({ service }) => {
           <p>Duration: {service?.duration}</p>
         </div>
 
-        {/* Book Button */}
-        <Link
-          to={`/booking/${service?._id}`}
-          className="btn btn-primary w-full"
-        >
-          Book Now
-        </Link>
+        {/* Book and Add to Cart Buttons */}
+        <div className="flex gap-3">
+          <Link
+            to={`/booking/${service?._id}`}
+            className="btn btn-primary w-1/2"
+          >
+            Book Now
+          </Link>
+          <button
+            className="btn btn-secondary w-1/2"
+            onClick={() => setIsModalOpen(true)}
+          >
+            Add to Cart({service?.price})
+          </button>
+        </div>
       </div>
+
+      {/* Modal */}
+      {isModalOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white rounded-lg p-6 w-[90%] max-w-md">
+            <h3 className="text-xl font-semibold mb-4">
+              Confirm Add to Cart
+            </h3>
+            <p className="text-gray-600 mb-6">
+              Do you want to add <strong>{service?.name}</strong> to your cart?
+            </p>
+            <div className="flex gap-4 justify-end">
+              <button
+                className="btn btn-outline"
+                onClick={() => setIsModalOpen(false)}
+              >
+                Cancel
+              </button>
+              <button
+                className="btn btn-primary"
+                onClick={handleAddToCart}
+              >
+                Confirm
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

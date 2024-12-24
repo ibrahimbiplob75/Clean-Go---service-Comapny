@@ -4,6 +4,7 @@ import { AiOutlineBars } from "react-icons/ai";
 import useAuth from '../../Hook/useAuth';
 import UseAxios from '../../Hook/UseAxios';
 import UserRole from '../../Hook/UserRole';
+import CartPage from '../../Pages/CartPage';
 const Dashboard = () => {
     const role=UserRole();
     return (
@@ -20,6 +21,7 @@ const Dashboard = () => {
             <h1 className="text-center text-4xl text-pink-500 mt-10">
               Welcome to Dashboard You are roling as {role}
             </h1>
+            
             <Outlet></Outlet>
           </div>
 

@@ -33,9 +33,9 @@ const Register = () => {
 
     try {
       await createUser(email, password);
-      const res = await Axios.post("/user/create-user",  userData );
+      const res = await Axios.put(`/user/create-user/${email}`, userData);
       console.log(res)
-      if(res.data.insertedId){
+      if(res.data.upsertedId){
         toast.success("User Created", { id: toastId });
         navigate("/login");
       }
